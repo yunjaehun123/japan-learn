@@ -33,6 +33,20 @@
             gap: 0.5rem;
             text-align: center;
         }
+        .quiz-option.correct {
+            background-color: #22c55e; /* green-500 */
+            color: white;
+            border-color: #16a34a; /* green-600 */
+        }
+        .quiz-option.incorrect {
+            background-color: #ef4444; /* red-500 */
+            color: white;
+            border-color: #dc2626; /* red-600 */
+        }
+        .quiz-option:disabled {
+            opacity: 0.8;
+            cursor: not-allowed;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -58,6 +72,9 @@
                 <button onclick="changeTab('map')" class="tab-btn text-lg font-semibold border-b-2 border-transparent px-4 py-3 transition-colors duration-200 ease-in-out">
                     🗺️ 일본 문화 지도
                 </button>
+                <button onclick="changeTab('test')" class="tab-btn text-lg font-semibold border-b-2 border-transparent px-4 py-3 transition-colors duration-200 ease-in-out">
+                    ✅ 학습 테스트
+                </button>
             </nav>
         </div>
 
@@ -72,7 +89,7 @@
 
             <!-- Phrases & Culture Section -->
             <div id="phrases" class="tab-content">
-                <div class="space-y-8">
+                 <div class="space-y-8">
                     <div>
                         <h3 class="text-2xl font-bold text-blue-600 mb-4 border-b pb-2">👋 인사말</h3>
                         <div id="phrases-greetings" class="space-y-4">
@@ -200,13 +217,54 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Test Section -->
+            <div id="test" class="tab-content">
+                <div id="test-selection" class="text-center">
+                    <h3 class="text-2xl font-bold text-blue-600 mb-6">학습한 내용을 테스트해 보세요!</h3>
+                    <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                        <button onclick="startTest('hiragana')" class="w-full sm:w-auto bg-blue-500 hover:bg-blue-600 text-white font-bold py-4 px-8 rounded-lg transition-transform transform hover:scale-105 shadow-lg">
+                            히라가나 테스트
+                        </button>
+                        <button onclick="startTest('vocab')" class="w-full sm:w-auto bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-8 rounded-lg transition-transform transform hover:scale-105 shadow-lg">
+                            단어 테스트
+                        </button>
+                        <button onclick="startTest('content')" class="w-full sm:w-auto bg-purple-500 hover:bg-purple-600 text-white font-bold py-4 px-8 rounded-lg transition-transform transform hover:scale-105 shadow-lg">
+                            학습 내용 테스트
+                        </button>
+                    </div>
+                </div>
+
+                <div id="quiz-container" class="hidden w-full max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-md">
+                    <div id="quiz-header" class="flex justify-between items-center mb-4">
+                        <h3 id="quiz-title" class="text-xl font-bold text-blue-600"></h3>
+                        <p id="quiz-progress" class="text-gray-600 font-semibold"></p>
+                    </div>
+                    <div id="quiz-question" class="text-center text-4xl font-bold my-8 min-h-[60px]"></div>
+                    <div id="quiz-options" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
+                    <div id="quiz-feedback" class="mt-4 text-center font-bold"></div>
+                    <div class="mt-6 text-center">
+                        <button id="next-question-btn" class="hidden bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-6 rounded-lg">다음 문제</button>
+                    </div>
+                </div>
+
+                <div id="result-container" class="hidden text-center w-full max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md">
+                    <h3 class="text-3xl font-bold text-blue-600 mb-4">테스트 결과</h3>
+                    <p id="result-score" class="text-5xl font-bold my-6"></p>
+                    <p id="result-message" class="text-lg text-gray-700"></p>
+                    <div class="mt-8 flex justify-center gap-4">
+                        <button id="retry-btn" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-lg">다시 풀기</button>
+                        <button onclick="showTestSelection()" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-6 rounded-lg">메뉴로 돌아가기</button>
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
 
     <script>
         // Data from original file and user's notes
         const vocabulary = [
-            // Original
+             // Original
             { jp: 'あかい', romaji: 'akai', kr: '빨갛다' }, { jp: 'いえ', romaji: 'ie', kr: '집' },
             { jp: 'えき', romaji: 'eki', kr: '역' }, { jp: 'かお', romaji: 'kao', kr: '얼굴' },
             { jp: 'いす', romaji: 'isu', kr: '의자' }, { jp: 'すし', romaji: 'sushi', kr: '초밥' },
@@ -343,6 +401,20 @@
             }
         ];
 
+        const contentQuestions = [
+            { question: "가장 일반적이고 공손한 1인칭 대명사는 무엇인가요?", options: ["わたし", "ぼく", "おれ", "わたくし"], answer: "わたし" },
+            { question: "주로 남자 후배나 동년배에게 사용하는 호칭은 무엇인가요?", options: ["ちゃん", "くん", "さん", "さま"], answer: "くん" },
+            { question: "작은 'っ'가 받침처럼 쓰이는 발음 규칙은 무엇인가요?", options: ["장음", "발음", "촉음", "연탁"], answer: "촉음" },
+            { question: "두 단어가 합쳐질 때 뒤 단어의 첫소리가 탁음으로 바뀌는 현상은 무엇인가요?", options: ["연탁 현상", "장음 현상", "촉음 현상", "발음 현상"], answer: "연탁 현상" },
+            { question: "조사로 쓰일 때 'は'는 어떻게 발음하나요?", options: ["하 (ha)", "와 (wa)", "에 (e)", "오 (o)"], answer: "와 (wa)" },
+            { question: "조사로 쓰일 때 'へ'는 어떻게 발음하나요?", options: ["헤 (he)", "페 (pe)", "에 (e)", "네 (ne)"], answer: "에 (e)" },
+            { question: "일본의 수도는 어디인가요?", options: ["오사카", "교토", "삿포로", "도쿄"], answer: "도쿄" },
+            { question: "일본의 화폐 단위는 무엇인가요?", options: ["원", "달러", "엔", "위안"], answer: "엔" },
+            { question: "일본의 소비세는 몇 %인가요?", options: ["5%", "8%", "10%", "12%"], answer: "10%" },
+            { question: "일본에서 가장 높은 산은 무엇인가요?", options: ["한라산", "에베레스트", "후지산", "백두산"], answer: "후지산" },
+            { question: "삿포로 눈 축제가 열리는 지역은 어디인가요?", options: ["혼슈", "규슈", "시코쿠", "홋카이도"], answer: "홋카이도" },
+            { question: "일본의 행정구역(도도부현)은 총 몇 개인가요?", options: ["42개", "45개", "47개", "50개"], answer: "47개" }
+        ];
 
         // Populate Vocabulary
         const vocabContainer = document.querySelector('#vocab .grid');
@@ -466,8 +538,192 @@
                 content.classList.remove('active');
             });
             document.getElementById(tabName).classList.add('active');
+            
+            if (tabName === 'test') {
+                showTestSelection();
+            }
+        }
+
+        // --- Test Feature Logic ---
+
+        const testSelectionEl = document.getElementById('test-selection');
+        const quizContainerEl = document.getElementById('quiz-container');
+        const resultContainerEl = document.getElementById('result-container');
+        const nextQuestionBtn = document.getElementById('next-question-btn');
+        const retryBtn = document.getElementById('retry-btn');
+        const quizTitleEl = document.getElementById('quiz-title');
+
+        let currentTestType = '';
+        let score = 0;
+        let currentQuestionIndex = 0;
+        let questions = [];
+        const QUIZ_LENGTH = 10;
+
+        // Fisher-Yates shuffle
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function generateHiraganaQuestions() {
+            const validChars = hiraganaChart.filter(c => c.jp);
+            const shuffled = shuffleArray([...validChars]);
+            const selected = shuffled.slice(0, QUIZ_LENGTH);
+            
+            return selected.map(q => {
+                const incorrectOptions = shuffleArray(validChars.filter(c => c.jp !== q.jp))
+                                            .slice(0, 3)
+                                            .map(c => c.romaji);
+                return {
+                    question: q.jp,
+                    answer: q.romaji,
+                    options: shuffleArray([q.romaji, ...incorrectOptions])
+                };
+            });
+        }
+
+        function generateVocabQuestions() {
+            const shuffled = shuffleArray([...vocabulary]);
+            const selected = shuffled.slice(0, QUIZ_LENGTH);
+
+            return selected.map(q => {
+                const isJpToKr = Math.random() > 0.5;
+                const question = isJpToKr ? q.jp : q.kr;
+                const answer = isJpToKr ? q.kr : q.jp;
+
+                const incorrectOptions = shuffleArray(vocabulary.filter(v => v.jp !== q.jp))
+                                            .slice(0, 3)
+                                            .map(v => isJpToKr ? v.kr : v.jp);
+
+                return {
+                    question,
+                    answer,
+                    options: shuffleArray([answer, ...incorrectOptions])
+                };
+            });
+        }
+
+        function generateContentQuestions() {
+            return shuffleArray([...contentQuestions]).slice(0, QUIZ_LENGTH);
+        }
+
+        function startTest(type) {
+            currentTestType = type;
+            score = 0;
+            currentQuestionIndex = 0;
+
+            if (type === 'hiragana') {
+                questions = generateHiraganaQuestions();
+                quizTitleEl.textContent = '히라가나 테스트';
+            } else if (type === 'vocab') {
+                questions = generateVocabQuestions();
+                quizTitleEl.textContent = '단어 테스트';
+            } else if (type === 'content') {
+                questions = generateContentQuestions();
+                quizTitleEl.textContent = '학습 내용 테스트';
+            }
+
+            testSelectionEl.classList.add('hidden');
+            resultContainerEl.classList.add('hidden');
+            quizContainerEl.classList.remove('hidden');
+
+            displayQuestion();
+        }
+
+        function displayQuestion() {
+            if (currentQuestionIndex >= questions.length) {
+                showResults();
+                return;
+            }
+
+            const q = questions[currentQuestionIndex];
+            const progressEl = document.getElementById('quiz-progress');
+            const questionEl = document.getElementById('quiz-question');
+            const optionsEl = document.getElementById('quiz-options');
+            const feedbackEl = document.getElementById('quiz-feedback');
+
+            progressEl.textContent = `문제 ${currentQuestionIndex + 1} / ${questions.length}`;
+            questionEl.textContent = q.question;
+            optionsEl.innerHTML = '';
+            feedbackEl.textContent = '';
+            nextQuestionBtn.classList.add('hidden');
+
+            q.options.forEach(option => {
+                const button = document.createElement('button');
+                button.textContent = option;
+                button.className = 'quiz-option p-4 border-2 rounded-lg text-lg hover:bg-gray-100 transition-colors';
+                button.onclick = () => checkAnswer(button, option);
+                optionsEl.appendChild(button);
+            });
+        }
+        
+        function checkAnswer(button, selectedOption) {
+            const q = questions[currentQuestionIndex];
+            const isCorrect = selectedOption === q.answer;
+            const feedbackEl = document.getElementById('quiz-feedback');
+            const optionsEl = document.getElementById('quiz-options');
+
+            if (isCorrect) {
+                score++;
+                button.classList.add('correct');
+                feedbackEl.textContent = '정답입니다! 🎉';
+                feedbackEl.className = 'mt-4 text-center font-bold text-green-500';
+            } else {
+                button.classList.add('incorrect');
+                feedbackEl.textContent = `오답입니다. 정답은 '${q.answer}' 입니다.`;
+                feedbackEl.className = 'mt-4 text-center font-bold text-red-500';
+            }
+
+            // Disable all option buttons
+            Array.from(optionsEl.children).forEach(btn => {
+                btn.disabled = true;
+                // Show correct answer if wrong one was picked
+                if (!isCorrect && btn.textContent === q.answer) {
+                    btn.classList.add('correct');
+                }
+            });
+
+            nextQuestionBtn.classList.remove('hidden');
+        }
+
+        nextQuestionBtn.addEventListener('click', () => {
+            currentQuestionIndex++;
+            displayQuestion();
+        });
+
+        function showResults() {
+            quizContainerEl.classList.add('hidden');
+            resultContainerEl.classList.remove('hidden');
+            
+            const scoreEl = document.getElementById('result-score');
+            const messageEl = document.getElementById('result-message');
+
+            scoreEl.textContent = `${score} / ${questions.length}`;
+            
+            let message = '';
+            const percentage = (score / questions.length) * 100;
+            if (percentage === 100) {
+                message = '완벽해요! 대단합니다! 💯';
+            } else if (percentage >= 70) {
+                message = '훌륭해요! 정말 잘하셨어요. 👍';
+            } else if (percentage >= 50) {
+                message = '좋아요! 조금만 더 복습해볼까요?';
+            } else {
+                message = '괜찮아요! 다시 한번 도전해보세요. 😊';
+            }
+            messageEl.textContent = message;
+        }
+
+        retryBtn.addEventListener('click', () => startTest(currentTestType));
+
+        function showTestSelection() {
+            resultContainerEl.classList.add('hidden');
+            quizContainerEl.classList.add('hidden');
+            testSelectionEl.classList.remove('hidden');
         }
     </script>
 </body>
 </html>
-
