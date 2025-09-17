@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>일본어 학습 도우미</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans KR', sans-serif;
+        }
+        .tab-btn.active {
+            border-color: #3b82f6;
+            color: #3b82f6;
+            background-color: #eff6ff;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8">
+        <header class="text-center mb-8">
+            <h1 class="text-3xl sm:text-4xl font-bold text-blue-600">일본어 학습 도우미</h1>
+            <p class="mt-2 text-lg text-gray-600">이미지 속 단어, 문장, 문화 정보를 정리했어요.</p>
+        </header>
+
+        <!-- Tab Navigation -->
+        <div class="mb-6 border-b border-gray-200">
+            <nav class="flex flex-wrap -mb-px" aria-label="Tabs">
+                <button onclick="changeTab('vocab')" class="tab-btn active text-lg font-semibold border-b-2 border-transparent px-4 py-3 transition-colors duration-200 ease-in-out">
+                    📚 단어장
+                </button>
+                <button onclick="changeTab('phrases')" class="tab-btn text-lg font-semibold border-b-2 border-transparent px-4 py-3 transition-colors duration-200 ease-in-out">
+                    💬 표현과 문화
+                </button>
+                 <button onclick="changeTab('hiragana')" class="tab-btn text-lg font-semibold border-b-2 border-transparent px-4 py-3 transition-colors duration-200 ease-in-out">
+                    📝 히라가나 표
+                </button>
+                <button onclick="changeTab('map')" class="tab-btn text-lg font-semibold border-b-2 border-transparent px-4 py-3 transition-colors duration-200 ease-in-out">
+                    🗺️ 일본 문화 지도
+                </button>
+            </nav>
+        </div>
+
+        <!-- Tab Content -->
+        <main>
+            <!-- Vocabulary Section -->
+            <div id="vocab" class="tab-content active">
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                    <!-- Words will be dynamically inserted here -->
+                </div>
+            </div>
+
+            <!-- Phrases & Culture Section -->
+            <div id="phrases" class="tab-content">
+                <div class="space-y-6">
+                    <div>
+                        <h3 class="text-2xl font-bold text-blue-600 mb-4 border-b pb-2">👋 인사말</h3>
+                        <div id="phrases-greetings" class="space-y-4">
+                            <!-- Phrases will be dynamically inserted here -->
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-blue-600 mb-4 border-b pb-2">🗣️ 호칭과 1인칭 대명사</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="bg-white p-5 rounded-lg shadow-md">
+                                <h4 class="text-xl font-semibold mb-3 text-blue-500">나를 가리키는 말</h4>
+                                <ul class="space-y-3 text-gray-700">
+                                    <li><strong>わたし (私):</strong> 가장 일반적이고 공손한 표현 (남녀공용)</li>
+                                    <li><strong>わたくし (私):</strong> 'わたし'보다 더 격식있고 겸손한 표현</li>
+                                    <li><strong>ぼく (僕):</strong> 주로 남성이 사용하는 부드러운 표현</li>
+                                    <li><strong>おれ (俺):</strong> 매우 친한 사이에서 남성이 사용하는 표현</li>
+                                </ul>
+                            </div>
+                            <div class="bg-white p-5 rounded-lg shadow-md">
+                                <h4 class="text-xl font-semibold mb-3 text-blue-500">상대방을 부르는 말</h4>
+                                <ul class="space-y-3 text-gray-700">
+                                    <li><strong>さま (様):</strong> 가장 높임 표현 (고객, 신 등)</li>
+                                    <li><strong>さん:</strong> 가장 일반적으로 쓰이는 존칭 (Mr./Ms.)</li>
+                                    <li><strong>くん (君):</strong> 주로 남자 후배나 동년배에게 사용</li>
+                                    <li><strong>ちゃん:</strong> 주로 여자 아이나 친한 친구에게 사용</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hiragana Chart Section -->
+            <div id="hiragana" class="tab-content">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-2xl font-bold text-blue-600 mb-4 border-b pb-2">五十音図 (ごじゅうおんず) - 오십음도</h3>
+                    <div id="hiragana-grid" class="grid grid-cols-5 gap-2 text-center">
+                        <!-- Hiragana characters will be dynamically inserted here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Map & Culture Section -->
+            <div id="map" class="tab-content">
+                 <div class="bg-white p-6 rounded-lg shadow-md space-y-8">
+                    <div>
+                        <h3 class="text-2xl font-bold text-blue-600 mb-4 border-b pb-2">🗾 일본 기본 정보</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-lg">
+                            <p><strong>국토:</strong> 홋카이도(北海道), 혼슈(本州), 시코쿠(四国), 규슈(九州) 4개의 큰 섬과 약 6,800여 개의 작은 섬으로 이루어져 있어요. (한반도의 1.7배)</p>
+                            <p><strong>인구:</strong> 약 1억 2,500만 명 이상으로, 세계 12위의 인구 대국이에요.</p>
+                            <p><strong>행정구역:</strong> 1개의 도(都-도쿄), 1개의 도(道-홋카이도), 2개의 부(府-오사카, 교토), 43개의 현(県)으로 구성돼요.</p>
+                             <p><strong>기후:</strong> 남북으로 길게 뻗어 있어 지역별로 차이가 있지만, 대부분 사계절이 뚜렷한 온대 기후에 속해요.</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="text-xl font-semibold mb-3 text-blue-500">📍 주요 지역 및 명소</h4>
+                            <ul class="space-y-2 text-gray-700" id="map-locations">
+                                <!-- Locations will be dynamically inserted -->
+                            </ul>
+                        </div>
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="text-xl font-semibold mb-3 text-blue-500">💴 일본의 화폐</h4>
+                                <p>일본의 통화 단위는 <strong>엔(円)</strong>입니다. 동전은 1, 5, 10, 50, 100, 500엔이 있고, 지폐는 1000, 2000, 5000, 10000엔이 사용됩니다.</p>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-semibold mb-3 text-blue-500">✍️ 일본의 문자</h4>
+                                <p>일본어는 <strong>히라가나, 가타카나, 한자</strong> 세 종류의 문자를 함께 사용합니다. 각각의 모양과 쓰임새가 다릅니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+    <script>
+        const vocabulary = [
+            { jp: 'あかい', romaji: 'akai', kr: '빨갛다' },
+            { jp: 'いえ', romaji: 'ie', kr: '집' },
+            { jp: 'えき', romaji: 'eki', kr: '역' },
+            { jp: 'かお', romaji: 'kao', kr: '얼굴' },
+            { jp: 'いす', romaji: 'isu', kr: '의자' },
+            { jp: 'すし', romaji: 'sushi', kr: '초밥' },
+            { jp: 'しち', romaji: 'shichi', kr: '일곱' },
+            { jp: 'つくえ', romaji: 'tsukue', kr: '책상' },
+            { jp: 'ちかてつ', romaji: 'chikatetsu', kr: '지하철' },
+            { jp: 'いぬ', romaji: 'inu', kr: '개' },
+            { jp: 'ねこ', romaji: 'neko', kr: '고양이' },
+            { jp: 'はち', romaji: 'hachi', kr: '여덟' },
+            { jp: 'ひと', romaji: 'hito', kr: '사람' },
+            { jp: 'みせ', romaji: 'mise', kr: '가게' },
+            { jp: 'なまえ', romaji: 'namae', kr: '이름' },
+            { jp: 'やさい', romaji: 'yasai', kr: '채소' },
+            { jp: 'ふゆ', romaji: 'fuyu', kr: '겨울' },
+            { jp: 'ふろ', romaji: 'furo', kr: '목욕' },
+            { jp: 'ろく', romaji: 'roku', kr: '여섯' },
+            { jp: 'くすり', romaji: 'kusuri', kr: '약' },
+            { jp: 'にわ', romaji: 'niwa', kr: '정원' },
+            { jp: 'わたし', romaji: 'watashi', kr: '나, 저' },
+            { jp: 'しろい', romaji: 'shiroi', kr: '하얗다' },
+            { jp: 'かぞく', romaji: 'kazoku', kr: '가족' },
+            { jp: 'せんせい', romaji: 'sensei', kr: '선생님' },
+            { jp: 'すうがく', romaji: 'suugaku', kr: '수학' },
+            { jp: 'がっこう', romaji: 'gakkou', kr: '학교' },
+            { jp: 'おんがく', romaji: 'ongaku', kr: '음악' },
+            { jp: 'かばん', romaji: 'kaban', kr: '가방' },
+            { jp: 'さんぽ', romaji: 'sanpo', kr: '산책' },
+            { jp: 'りょうり', romaji: 'ryouri', kr: '요리' },
+            { jp: 'ここ', romaji: 'koko', kr: '여기' },
+            { jp: 'ほん', romaji: 'hon', kr: '책' },
+            { jp: 'よん', romaji: 'yon', kr: '사' },
+            { jp: 'ぶかつ', romaji: 'bukatsu', kr: '동아리활동' },
+            { jp: 'ごご', romaji: 'gogo', kr: '오후' },
+            { jp: 'あし', romaji: 'ashi', kr: '다리' },
+            { jp: 'あじ', romaji: 'aji', kr: '맛' },
+            { jp: 'いしゃ', romaji: 'isha', kr: '의사' },
+            { jp: 'きゅう', romaji: 'kyuu', kr: '9' },
+            { jp: 'しゅう', romaji: 'shuu', kr: '주' },
+            { jp: 'じゅう', romaji: 'juu', kr: '10' },
+            { jp: 'りゅう', romaji: 'ryuu', kr: '용' },
+            { jp: 'わたしたち', romaji: 'watashitachi', kr: '우리들' },
+            { jp: 'けさ', romaji: 'kesa', kr: '오늘 아침' },
+            { jp: 'いっぱい', romaji: 'ippai', kr: '가득' },
+            { jp: 'きって', romaji: 'kitte', kr: '우표' },
+            { jp: 'せんぱい', romaji: 'senpai', kr: '선배' },
+            { jp: 'ほっかいどう', romaji: 'hokkaido', kr: '홋카이도' },
+            { jp: 'おかあさん', romaji: 'okaasan', kr: '어머니' },
+            { jp: 'おにいさん', romaji: 'oniisan', kr: '형, 오빠' },
+            { jp: 'おねえさん', romaji: 'oneesan', kr: '누나, 언니' },
+            { jp: 'おおさか', romaji: 'oosaka', kr: '오사카' },
+            { jp: 'こうこう', romaji: 'koukou', kr: '고등학교' },
+            { jp: 'おばさん', romaji: 'obasan', kr: '아주머니' },
+            { jp: 'おばあさん', romaji: 'obaasan', kr: '할머니' },
+            { jp: 'てんき', romaji: 'tenki', kr: '날씨' },
+            { jp: 'くうき', romaji: 'kuuki', kr: '공기' },
+        ];
+
+        const phrases = [
+            { jp: 'おはようございます', romaji: 'ohayou gozaimasu', kr: '안녕하세요 (아침 인사)' },
+            { jp: 'こんにちは', romaji: 'konnichiwa', kr: '안녕하세요 (점심 인사)' },
+            { jp: 'こんばんは', romaji: 'konbanwa', kr: '안녕하세요 (저녁 인사)' },
+            { jp: 'さようなら', romaji: 'sayounara', kr: '안녕히 가세요/계세요' },
+            { jp: 'じゃ、またね', romaji: 'ja, matane', kr: '그럼, 또 봐 (친한 사이)' },
+            { jp: 'また あした', romaji: 'mata ashita', kr: '내일 봐요' },
+            { jp: 'バイバイ', romaji: 'baibai', kr: '바이바이' },
+            { jp: 'きょうは いい てんきですね', romaji: 'kyou wa ii tenki desu ne', kr: '오늘은 날씨가 좋네요' },
+        ];
+        
+        const mapLocations = [
+            { name: '홋카이도 (北海道)', feature: '삿포로 눈 축제 (雪まつり)가 유명해요.' },
+            { name: '도쿄 (東京)', feature: '수도이며, 도쿄 타워 (東京タワー)가 상징적이에요.' },
+            { name: '교토 (京都)', feature: '전통적인 도시로, 금각사 (金閣寺)가 있어요.' },
+            { name: '오사카 (大阪)', feature: '오사카 성 (大阪城)과 맛있는 음식이 많아요.' },
+            { name: '히로시마 (広島)', feature: '이쓰쿠시마 신사 (厳島神社)의 바다 위 도리이가 유명해요.' },
+            { name: '규슈 (九州)', feature: '후쿠오카의 돈코츠 라멘이 대표적이에요.' },
+            { name: '오키나와 (沖縄)', feature: '아름다운 바다와 슈리 성 (首里城)이 있어요.' },
+            { name: '후지산 (富士山)', feature: '일본에서 가장 높고 유명한 산이에요.' }
+        ];
+
+        const hiraganaChart = [
+            // a, i, u, e, o
+            { jp: 'あ', romaji: 'a', kr: '아' }, { jp: 'い', romaji: 'i', kr: '이' }, { jp: 'う', romaji: 'u', kr: '우' }, { jp: 'え', romaji: 'e', kr: '에' }, { jp: 'お', romaji: 'o', kr: '오' },
+            // ka, ki, ku, ke, ko
+            { jp: 'か', romaji: 'ka', kr: '카' }, { jp: 'き', romaji: 'ki', kr: '키' }, { jp: 'く', romaji: 'ku', kr: '쿠' }, { jp: 'け', romaji: 'ke', kr: '케' }, { jp: 'こ', romaji: 'ko', kr: '코' },
+            // sa, shi, su, se, so
+            { jp: 'さ', romaji: 'sa', kr: '사' }, { jp: 'し', romaji: 'shi', kr: '시' }, { jp: 'す', romaji: 'su', kr: '스' }, { jp: 'せ', romaji: 'se', kr: '세' }, { jp: 'そ', romaji: 'so', kr: '소' },
+            // ta, chi, tsu, te, to
+            { jp: 'た', romaji: 'ta', kr: '타' }, { jp: 'ち', romaji: 'chi', kr: '치' }, { jp: 'つ', romaji: 'tsu', kr: '츠' }, { jp: 'て', romaji: 'te', kr: '테' }, { jp: 'と', romaji: 'to', kr: '토' },
+            // na, ni, nu, ne, no
+            { jp: 'な', romaji: 'na', kr: '나' }, { jp: 'に', romaji: 'ni', kr: '니' }, { jp: 'ぬ', romaji: 'nu', kr: '누' }, { jp: 'ね', romaji: 'ne', kr: '네' }, { jp: 'の', romaji: 'no', kr: '노' },
+            // ha, hi, fu, he, ho
+            { jp: 'は', romaji: 'ha', kr: '하' }, { jp: 'ひ', romaji: 'hi', kr: '히' }, { jp: 'ふ', romaji: 'fu', kr: '후' }, { jp: 'へ', romaji: 'he', kr: '헤' }, { jp: 'ほ', romaji: 'ho', kr: '호' },
+            // ma, mi, mu, me, mo
+            { jp: 'ま', romaji: 'ma', kr: '마' }, { jp: 'み', romaji: 'mi', kr: '미' }, { jp: 'む', romaji: 'mu', kr: '무' }, { jp: 'め', romaji: 'me', kr: '메' }, { jp: 'も', romaji: 'mo', kr: '모' },
+            // ya, yu, yo
+            { jp: 'や', romaji: 'ya', kr: '야' }, { jp: '', romaji: '', kr: '' }, { jp: 'ゆ', romaji: 'yu', kr: '유' }, { jp: '', romaji: '', kr: '' }, { jp: 'よ', romaji: 'yo', kr: '요' },
+            // ra, ri, ru, re, ro
+            { jp: 'ら', romaji: 'ra', kr: '라' }, { jp: 'り', romaji: 'ri', kr: '리' }, { jp: 'る', romaji: 'ru', kr: '루' }, { jp: 'れ', romaji: 're', kr: '레' }, { jp: 'ろ', romaji: 'ro', kr: '로' },
+            // wa, wo
+            { jp: 'わ', romaji: 'wa', kr: '와' }, { jp: '', romaji: '', kr: '' }, { jp: '', romaji: '', kr: '' }, { jp: '', romaji: '', kr: '' }, { jp: 'を', romaji: 'wo', kr: '오' },
+            // n
+            { jp: 'ん', romaji: 'n', kr: '응' }, { jp: '', romaji: '', kr: '' }, { jp: '', romaji: '', kr: '' }, { jp: '', romaji: '', kr: '' }, { jp: '', romaji: '', kr: '' },
+        ];
+
+
+        // Populate Vocabulary
+        const vocabContainer = document.querySelector('#vocab .grid');
+        vocabulary.forEach(word => {
+            const card = document.createElement('div');
+            card.className = 'bg-white p-4 rounded-lg shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col justify-center items-center text-center';
+            card.innerHTML = `
+                <p class="text-3xl font-bold text-blue-500">${word.jp}</p>
+                <p class="text-sm text-gray-500">${word.romaji}</p>
+                <p class="mt-2 text-lg font-semibold text-gray-800">${word.kr}</p>
+            `;
+            vocabContainer.appendChild(card);
+        });
+
+        // Populate Phrases
+        const phrasesContainer = document.querySelector('#phrases-greetings');
+        phrases.forEach(phrase => {
+            const item = document.createElement('div');
+            item.className = 'bg-white p-5 rounded-lg shadow-md flex items-center justify-between';
+            item.innerHTML = `
+                <div>
+                    <p class="text-xl font-bold text-blue-500">${phrase.jp}</p>
+                    <p class="text-md text-gray-500">${phrase.romaji}</p>
+                </div>
+                <p class="text-lg font-semibold text-right">${phrase.kr}</p>
+            `;
+            phrasesContainer.appendChild(item);
+        });
+        
+        // Populate Hiragana Chart
+        const hiraganaContainer = document.getElementById('hiragana-grid');
+        hiraganaChart.forEach(char => {
+            const cell = document.createElement('div');
+            if (char.jp) {
+                cell.className = 'bg-blue-50 p-3 rounded-lg shadow-sm hover:shadow-md hover:bg-blue-100 transition-all duration-200 flex flex-col justify-center items-center cursor-pointer';
+                cell.innerHTML = `
+                    <p class="text-3xl font-bold text-blue-600">${char.jp}</p>
+                    <p class="text-xs text-gray-500">${char.romaji}</p>
+                    <p class="mt-1 text-md font-medium text-gray-700">${char.kr}</p>
+                `;
+            } else {
+                cell.className = 'p-3 rounded-lg'; // Empty cell
+            }
+            hiraganaContainer.appendChild(cell);
+        });
+        
+        // Populate Map Locations
+        const mapContainer = document.getElementById('map-locations');
+        mapLocations.forEach(loc => {
+            const li = document.createElement('li');
+            li.className = 'flex items-start';
+            li.innerHTML = `
+                <span class="text-blue-500 mr-2">📍</span>
+                <span><strong>${loc.name}:</strong> ${loc.feature}</span>
+            `;
+            mapContainer.appendChild(li);
+        });
+
+        function changeTab(tabName) {
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabButtons.forEach(button => {
+                button.classList.remove('active');
+            });
+            document.querySelector(`.tab-btn[onclick="changeTab('${tabName}')"]`).classList.add('active');
+
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById(tabName).classList.add('active');
+        }
+    </script>
+</body>
+</html>
+
