@@ -72,6 +72,9 @@
                 <button onclick="changeTab('map')" class="tab-btn text-lg font-semibold border-b-2 border-transparent px-4 py-3 transition-colors duration-200 ease-in-out">
                     🗺️ 일본 문화 지도
                 </button>
+                <button onclick="changeTab('numbers')" class="tab-btn text-lg font-semibold border-b-2 border-transparent px-4 py-3 transition-colors duration-200 ease-in-out">
+                    🔢 숫자
+                </button>
                 <button onclick="changeTab('test')" class="tab-btn text-lg font-semibold border-b-2 border-transparent px-4 py-3 transition-colors duration-200 ease-in-out">
                     ✅ 학습 테스트
                 </button>
@@ -160,6 +163,33 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Additional Materials from Uploaded Notes -->
+                    <div>
+                        <h3 class="text-2xl font-bold text-blue-600 mb-4 border-b pb-2">📝 추가 학습 자료 (기본 문장과 직업)</h3>
+                        <div class="space-y-6">
+                            <div class="bg-white p-5 rounded-lg shadow-md space-y-4">
+                                <h4 class="text-xl font-semibold text-blue-500">추가 단어</h4>
+                                <ul class="list-disc list-inside space-y-2">
+                                    <li><strong>先生 (せんせい, sensei):</strong> 선생님</li>
+                                    <li><strong>学生 (がくせい, gakusei):</strong> 학생</li>
+                                    <li><strong>医生 (いしゃ, isha):</strong> 의사</li>
+                                </ul>
+                            </div>
+                            <div class="bg-white p-5 rounded-lg shadow-md space-y-4">
+                                <h4 class="text-xl font-semibold text-blue-500">기본 문장 예시</h4>
+                                <ul class="space-y-3 text-gray-700">
+                                    <li><strong>いさんは 学生です。</strong> (이さんは 학생입니다.) - I-san is a student.</li>
+                                    <li><strong>いさんは 学生ですか。</strong> (이さんは 학생입니까?) - Is I-san a student?</li>
+                                    <li><strong>はい、 いさんは 学生です。</strong> (네, 이さんは 학생입니다.)</li>
+                                    <li><strong>パクさんは 医生です。</strong> (박さんは 의사입니다.) - Park-san is a doctor.</li>
+                                    <li><strong>パクさんは 医生ですか。</strong> (박さんは 의사입니까?) - Is Park-san a doctor?</li>
+                                    <li><strong>はい、 パクさんは 医生です。</strong> (네, 박さんは 의사입니다.)</li>
+                                    <li><strong>いさんは 先生です。</strong> (이さんは 선생님입니다.) - I-san is a teacher.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -214,6 +244,50 @@
                                 <p>일본어는 <strong>히라가나, 가타카나, 한자</strong> 세 종류의 문자를 함께 사용합니다. 각각의 모양과 쓰임새가 다릅니다.</p>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Numbers Section -->
+            <div id="numbers" class="tab-content">
+                <div class="bg-white p-6 rounded-lg shadow-md space-y-8">
+                    <h3 class="text-2xl font-bold text-blue-600 mb-4 border-b pb-2">🔢 일본어 숫자 (1~100 예시)</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-4">
+                            <h4 class="text-xl font-semibold text-blue-500">기본 숫자 (1~10)</h4>
+                            <ul class="space-y-2 text-gray-700">
+                                <li><strong>1: いち (이찌)</strong></li>
+                                <li><strong>2: に (니)</strong></li>
+                                <li><strong>3: さん (상)</strong></li>
+                                <li><strong>4: し / よん (시 / 용)</strong></li>
+                                <li><strong>5: ご (고)</strong></li>
+                                <li><strong>6: ろく (로꾸)</strong></li>
+                                <li><strong>7: しち / なな (시찌 / 나나)</strong></li>
+                                <li><strong>8: はち (하찌)</strong></li>
+                                <li><strong>9: く / きゅう (쿠 / 큐-)</strong></li>
+                                <li><strong>10: じゅう (쥬-)</strong></li>
+                            </ul>
+                        </div>
+                        <div class="space-y-4">
+                            <h4 class="text-xl font-semibold text-blue-500">10의 배수 예시</h4>
+                            <ul class="space-y-2 text-gray-700">
+                                <li><strong>20: にじゅう (니쥬-)</strong></li>
+                                <li><strong>30: さんじゅう (산쥬-)</strong></li>
+                                <li><strong>40: よんじゅう (욘쥬-)</strong></li>
+                                <li><strong>50: ごじゅう (고쥬-)</strong></li>
+                                <li><strong>60: ろくじゅう (로꾸쥬-)</strong></li>
+                                <li><strong>70: ななじゅう (나나쥬-)</strong></li>
+                                <li><strong>80: はちじゅう (하찌쥬-)</strong></li>
+                                <li><strong>90: きゅうじゅう (큐-쥬-)</strong></li>
+                                <li><strong>100: ひゃく (햐꾸)</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="bg-gray-100 p-4 rounded-lg">
+                        <h4 class="text-xl font-semibold mb-3 text-blue-500">숫자 변환기 (1~999)</h4>
+                        <input type="number" id="number-input" min="1" max="999" placeholder="숫자 입력 (1~999)" class="w-full p-2 border rounded mb-2">
+                        <button onclick="convertNumber()" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">변환</button>
+                        <p id="number-result" class="mt-4 text-lg font-semibold"></p>
                     </div>
                 </div>
             </div>
@@ -542,6 +616,106 @@
             if (tabName === 'test') {
                 showTestSelection();
             }
+        }
+
+        // Number Converter Function (Extended to 1-999)
+        function convertNumber() {
+            const input = parseInt(document.getElementById('number-input').value);
+            const resultEl = document.getElementById('number-result');
+
+            if (isNaN(input) || input < 1 || input > 999) {
+                resultEl.textContent = '1부터 999까지의 숫자를 입력해주세요.';
+                return;
+            }
+
+            const units = {
+                1: { hiragana: 'いち', romaji: 'ichi', kr: '이찌' },
+                2: { hiragana: 'に', romaji: 'ni', kr: '니' },
+                3: { hiragana: 'さん', romaji: 'san', kr: '상' },
+                4: { hiragana: 'よん', romaji: 'yon', kr: '용' }, // Prefer yon/shi variants as per data
+                5: { hiragana: 'ご', romaji: 'go', kr: '고' },
+                6: { hiragana: 'ろく', romaji: 'roku', kr: '로꾸' },
+                7: { hiragana: 'なな', romaji: 'nana', kr: '나나' }, // Prefer nana/shichi
+                8: { hiragana: 'はち', romaji: 'hachi', kr: '하찌' },
+                9: { hiragana: 'きゅう', romaji: 'kyuu', kr: '큐-' },
+                0: { hiragana: '', romaji: '', kr: '' }
+            };
+
+            const tens = {
+                1: { hiragana: 'じゅう', romaji: 'juu', kr: '쥬-' },
+                2: { hiragana: 'にじゅう', romaji: 'nijuu', kr: '니쥬-' },
+                3: { hiragana: 'さんじゅう', romaji: 'sanjuu', kr: '산쥬-' },
+                4: { hiragana: 'よんじゅう', romaji: 'yonjuu', kr: '욘쥬-' },
+                5: { hiragana: 'ごじゅう', romaji: 'gojuu', kr: '고쥬-' },
+                6: { hiragana: 'ろくじゅう', romaji: 'rokujuu', kr: '로꾸쥬-' },
+                7: { hiragana: 'ななじゅう', romaji: 'nanajuu', kr: '나나쥬-' },
+                8: { hiragana: 'はちじゅう', romaji: 'hachijuu', kr: '하찌쥬-' },
+                9: { hiragana: 'きゅうじゅう', romaji: 'kyuujuu', kr: '큐-쥬-' },
+                0: { hiragana: '', romaji: '', kr: '' }
+            };
+
+            const hundreds = {
+                1: { hiragana: 'ひゃく', romaji: 'hyaku', kr: '햐꾸' },
+                2: { hiragana: 'にひゃく', romaji: 'nihyaku', kr: '니햐꾸' },
+                3: { hiragana: 'さんびゃく', romaji: 'sanbyaku', kr: '산뵤꾸' }, // Special: byaku
+                4: { hiragana: 'よんひゃく', romaji: 'yonhyaku', kr: '욘햐꾸' },
+                5: { hiragana: 'ごひゃく', romaji: 'gohyaku', kr: '고햐꾸' },
+                6: { hiragana: 'ろっぴゃく', romaji: 'roppyaku', kr: '로뽀꾸' }, // Special: ppyaku
+                7: { hiragana: 'ななひゃく', romaji: 'nanahyaku', kr: '나나햐꾸' },
+                8: { hiragana: 'はっぴゃく', romaji: 'happyaku', kr: '하뽀꾸' }, // Special: ppyaku
+                9: { hiragana: 'きゅうひゃく', romaji: 'kyuu hyaku', kr: '큐-햐꾸' },
+                0: { hiragana: '', romaji: '', kr: '' }
+            };
+
+            let hiraganaStr = '';
+            let romajiStr = '';
+            let krStr = '';
+
+            const num = input.toString().padStart(3, '0');
+            const h = parseInt(num[0]);
+            const t = parseInt(num[1]);
+            const u = parseInt(num[2]);
+
+            // Hundreds
+            if (h > 0) {
+                hiraganaStr += hundreds[h].hiragana;
+                romajiStr += hundreds[h].romaji;
+                krStr += hundreds[h].kr;
+            }
+
+            // Tens
+            if (t > 0) {
+                if (h > 0) {
+                    hiraganaStr += '';
+                    romajiStr += ' ';
+                    krStr += ' ';
+                }
+                hiraganaStr += tens[t].hiragana;
+                romajiStr += tens[t].romaji;
+                krStr += tens[t].kr;
+            }
+
+            // Units
+            if (u > 0) {
+                if (h > 0 || t > 0) {
+                    hiraganaStr += '';
+                    romajiStr += '';
+                    krStr += '';
+                }
+                hiraganaStr += units[u].hiragana;
+                romajiStr += units[u].romaji;
+                krStr += units[u].kr;
+            }
+
+            // For numbers <10, direct unit
+            if (input < 10) {
+                hiraganaStr = units[input].hiragana;
+                romajiStr = units[input].romaji;
+                krStr = units[input].kr;
+            }
+
+            // Special cases for 4,7,9 in units/tens if needed, but using preferred from data
+            resultEl.innerHTML = `<strong>히라가나:</strong> ${hiraganaStr}<br><strong>로마지:</strong> ${romajiStr}<br><strong>한국어:</strong> ${krStr}`;
         }
 
         // --- Test Feature Logic ---
