@@ -306,6 +306,9 @@
                         <button onclick="startTest('content')" class="w-full sm:w-auto bg-purple-500 hover:bg-purple-600 text-white font-bold py-4 px-8 rounded-lg transition-transform transform hover:scale-105 shadow-lg">
                             학습 내용 테스트
                         </button>
+                        <button onclick="startTest('numbers')" class="w-full sm:w-auto bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-4 px-8 rounded-lg transition-transform transform hover:scale-105 shadow-lg">
+                            숫자 테스트
+                        </button>
                     </div>
                 </div>
 
@@ -784,6 +787,61 @@
             return shuffleArray([...contentQuestions]).slice(0, QUIZ_LENGTH);
         }
 
+        function generateNumberQuestions() {
+            const numbers = Array.from({ length: 99 }, (_, i) => i + 1); // 1 to 99 for simplicity
+            const selectedNumbers = shuffleArray(numbers).slice(0, QUIZ_LENGTH);
+
+            return selectedNumbers.map(num => {
+                const units = {
+                    1: { hiragana: 'いち', romaji: 'ichi' },
+                    2: { hiragana: 'に', romaji: 'ni' },
+                    3: { hiragana: 'さん', romaji: 'san' },
+                    4: { hiragana: 'よん', romaji: 'yon' },
+                    5: { hiragana: 'ご', romaji: 'go' },
+                    6: { hiragana: 'ろく', romaji: 'roku' },
+                    7: { hiragana: 'なな', romaji: 'nana' },
+                    8: { hiragana: 'はち', romaji: 'hachi' },
+                    9: { hiragana: 'きゅう', romaji: 'kyuu' }
+                };
+
+                const tens = {
+                    1: { hiragana: 'じゅう', romaji: 'juu' },
+                    2: { hiragana: 'にじゅう', romaji: 'nijuu' },
+                    3: { hiragana: 'さんじゅう', romaji: 'sanjuu' },
+                    4: { hiragana: 'よんじゅう', romaji: 'yonjuu' },
+                    5: { hiragana: 'ごじゅう', romaji: 'gojuu' },
+                    6: { hiragana: 'ろくじゅう', romaji: 'rokujuu' },
+                    7: { hiragana: 'ななじゅう', romaji: 'nanajuu' },
+                    8: { hiragana: 'はちじゅう', romaji: 'hachijuu' },
+                    9: { hiragana: 'きゅうじゅう', romaji: 'kyuujuu' }
+                };
+
+                let hiragana = '';
+                if (num < 10) {
+                    hiragana = units[num].hiragana;
+                } else {
+                    const t = Math.floor(num / 10);
+                    const u = num % 10;
+                    hiragana = tens[t].hiragana + (u > 0 ? units[u].hiragana : '');
+                }
+
+                const incorrectOptions = shuffleArray(numbers.filter(n => n !== num))
+                    .slice(0, 3)
+                    .map(n => {
+                        if (n < 10) return units[n].hiragana;
+                        const t = Math.floor(n / 10);
+                        const u = n % 10;
+                        return tens[t].hiragana + (u > 0 ? units[u].hiragana : '');
+                    });
+
+                return {
+                    question: num.toString(),
+                    answer: hiragana,
+                    options: shuffleArray([hiragana, ...incorrectOptions])
+                };
+            });
+        }
+
         function startTest(type) {
             currentTestType = type;
             score = 0;
@@ -798,6 +856,9 @@
             } else if (type === 'content') {
                 questions = generateContentQuestions();
                 quizTitleEl.textContent = '학습 내용 테스트';
+            } else if (type === 'numbers') {
+                questions = generateNumberQuestions();
+                quizTitleEl.textContent = '숫자 테스트';
             }
 
             testSelectionEl.classList.add('hidden');
