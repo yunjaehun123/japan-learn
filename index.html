@@ -57,7 +57,7 @@
             <p class="mt-2 text-lg text-gray-600">이미지와 필기 속 단어, 문장, 문화 정보를 정리했어요.</p>
         </header>
 
-        <!-- Tab Navigation -->
+         Tab Navigation 
         <div class="mb-6 border-b border-gray-200">
             <nav class="flex flex-wrap -mb-px" aria-label="Tabs">
                 <button onclick="changeTab('vocab')" class="tab-btn active text-lg font-semibold border-b-2 border-transparent px-4 py-3 transition-colors duration-200 ease-in-out">
@@ -81,24 +81,60 @@
             </nav>
         </div>
 
-        <!-- Tab Content -->
+         Tab Content 
         <main>
-            <!-- Vocabulary Section -->
+             Vocabulary Section 
             <div id="vocab" class="tab-content active">
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                    <!-- Words will be dynamically inserted here -->
+                     Words will be dynamically inserted here 
                 </div>
             </div>
 
-            <!-- Phrases & Culture Section -->
+             Phrases & Culture Section 
             <div id="phrases" class="tab-content">
                  <div class="space-y-8">
                     <div>
                         <h3 class="text-2xl font-bold text-blue-600 mb-4 border-b pb-2">👋 인사말</h3>
                         <div id="phrases-greetings" class="space-y-4">
-                            <!-- Phrases will be dynamically inserted here -->
+                             Phrases will be dynamically inserted here 
                         </div>
                     </div>
+
+                     새로 추가: 집에서 쓰는 인사말 
+                    <div>
+                        <h3 class="text-2xl font-bold text-blue-600 mb-4 border-b pb-2">🏠 집에서 쓰는 인사말</h3>
+                        <div id="phrases-home" class="space-y-4">
+                             Home phrases will be dynamically inserted here 
+                        </div>
+                    </div>
+
+                     새로 추가: 이・그・저・어느 표현 
+                    <div>
+                        <h3 class="text-2xl font-bold text-blue-600 mb-4 border-b pb-2">👉 이・그・저・어느 표현</h3>
+                        <div class="bg-white p-5 rounded-lg shadow-md">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <h4 class="text-xl font-semibold mb-3 text-blue-500">사물</h4>
+                                    <ul class="space-y-2 text-gray-700">
+                                        <li><strong>これ (이것):</strong> 화자에게 가까운 것</li>
+                                        <li><strong>それ (그것):</strong> 청자에게 가까운 것</li>
+                                        <li><strong>あれ (저것):</strong> 화자와 청자 모두에게서 먼 것</li>
+                                        <li><strong>どれ (어느 것):</strong> 의문사</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-semibold mb-3 text-blue-500">장소</h4>
+                                    <ul class="space-y-2 text-gray-700">
+                                        <li><strong>ここ (여기):</strong> 화자가 있는 곳</li>
+                                        <li><strong>そこ (거기):</strong> 청자가 있는 곳</li>
+                                        <li><strong>あそこ (저기):</strong> 화자와 청자 모두에게서 먼 곳</li>
+                                        <li><strong>どこ (어디):</strong> 의문사</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div>
                         <h3 class="text-2xl font-bold text-blue-600 mb-4 border-b pb-2">🗣️ 호칭과 1인칭 대명사</h3>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -123,7 +159,7 @@
                         </div>
                     </div>
                     
-                    <!-- Pronunciation Rules Section from Notes -->
+                     Pronunciation Rules Section from Notes 
                     <div>
                         <h3 class="text-2xl font-bold text-blue-600 mb-4 border-b pb-2">✍️ 일본어 발음 규칙</h3>
                         <div class="space-y-6">
@@ -164,7 +200,7 @@
                         </div>
                     </div>
 
-                    <!-- Additional Materials from Uploaded Notes -->
+                     Additional Materials from Uploaded Notes 
                     <div>
                         <h3 class="text-2xl font-bold text-blue-600 mb-4 border-b pb-2">📝 추가 학습 자료 (기본 문장과 직업)</h3>
                         <div class="space-y-6">
@@ -190,39 +226,78 @@
                             </div>
                         </div>
                     </div>
+
+                     새로 추가: 해외 국가명 
+                    <div>
+                        <h3 class="text-2xl font-bold text-blue-600 mb-4 border-b pb-2">🌍 해외 국가명 (어휘 표기)</h3>
+                        <div class="bg-white p-5 rounded-lg shadow-md">
+                            <div class="grid grid-cols-2 md:grid-cols-3 gap-4 text-gray-700">
+                                <div><strong>イギリス:</strong> 영국</div>
+                                <div><strong>ドイツ:</strong> 독일</div>
+                                <div><strong>フランス:</strong> 네덜란드</div>
+                                <div><strong>アメリカ:</strong> 프랑스</div>
+                                <div><strong>ギリシャ:</strong> 그리스</div>
+                                <div><strong>イタリア:</strong> 이탈리아</div>
+                                <div><strong>スイス:</strong> 스위스</div>
+                            </div>
+                        </div>
+                    </div>
+
+                     새로 추가: ~です/~ではありません 표현 
+                    <div>
+                        <h3 class="text-2xl font-bold text-blue-600 mb-4 border-b pb-2">📖 주요 표현</h3>
+                        <div class="space-y-6">
+                            <div class="bg-white p-5 rounded-lg shadow-md space-y-4">
+                                <h4 class="text-xl font-semibold text-blue-500">~です (입니다)</h4>
+                                <p class="text-gray-700">정중한 표현으로, 조사나 소사에 접속해요.</p>
+                                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                    <li><strong>たのしい(즐겁다) + です → たのしいです.</strong> (즐겁습니다.)</li>
+                                    <li><strong>たのしい(즐겁다) + です → たのしいです.</strong> (즐겁습니다.)</li>
+                                </ul>
+                            </div>
+                            <div class="bg-white p-5 rounded-lg shadow-md space-y-4">
+                                <h4 class="text-xl font-semibold text-blue-500">~ではありません (아닙니다)</h4>
+                                <p class="text-gray-700">~では ないです.</p>
+                                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                    <li><strong>ここは いぬの トイレでは ありません.</strong> (이곳은 개 화장실이 아닙니다.)</li>
+                                    <li><strong>医者では ありません.</strong> (의사가 아닙니다.)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Hiragana Chart Section -->
+             Hiragana Chart Section 
             <div id="hiragana" class="tab-content">
                 <div class="bg-white p-6 rounded-lg shadow-md">
                     <h3 class="text-2xl font-bold text-blue-600 mb-4 border-b pb-2">五十音図 (ごじゅうおんず) - 오십음도</h3>
                     <div id="hiragana-grid" class="hiragana-grid-container">
-                        <!-- Hiragana characters will be dynamically inserted here -->
+                         Hiragana characters will be dynamically inserted here 
                     </div>
                     
                     <h3 class="text-2xl font-bold text-blue-600 mt-10 mb-4 border-b pb-2">탁음(濁音)과 반탁음(半濁音)</h3>
                     <div id="dakuon-grid" class="space-y-4">
-                         <!-- Dakuon/Handakuon charts will be dynamically inserted here -->
+                          Dakuon/Handakuon charts will be dynamically inserted here 
                     </div>
 
                     <h3 class="text-2xl font-bold text-blue-600 mt-10 mb-4 border-b pb-2">拗音 (ようおん) - 요음</h3>
                     <div id="yoon-grid" class="space-y-4">
-                        <!-- Yoon charts will be dynamically inserted here -->
+                         Yoon charts will be dynamically inserted here 
                     </div>
                 </div>
             </div>
 
-            <!-- Map & Culture Section -->
+             Map & Culture Section 
             <div id="map" class="tab-content">
                  <div class="bg-white p-6 rounded-lg shadow-md space-y-8">
                     <div>
                         <h3 class="text-2xl font-bold text-blue-600 mb-4 border-b pb-2">🗾 일본 기본 정보</h3>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-lg">
-                            <p><strong>국토:</strong> 홋카이도(北海道), 혼슈(本州), 시코쿠(四国), 규슈(九州) 4개의 큰 섬과 약 6,800여 개의 작은 섬으로 이루어져 있어요. (한반도의 약 1.7배)</p>
-                            <p><strong>인구:</strong> 약 1억 2,500만 명 이상으로, 세계 12위의 인구 대국이에요.</p>
-                            <p><strong>행정구역:</strong> 1도(都), 1도(道), 2부(府), 43현(県)으로 구성돼요. (총 47개 도도부현)</p>
-                             <p><strong>기후:</strong> 남북으로 길게 뻗어 있어 지역별로 차이가 있지만, 대부분 사계절이 뚜렷한 온대 기후에 속해요.</p>
+                            <p><strong>수도:</strong> 도쿄(とうきょう)</p>
+                            <p><strong>인구:</strong> 약 1억 2,500만 명 (2023)</p>
+                            <p><strong>면적:</strong> 약 38만㎢</p>
+                            <p><strong>행정구역:</strong> 1도(都)-도쿄도, 2부(府)-오사카부, 교토부, 43현(県)</p>
                         </div>
                     </div>
 
@@ -230,7 +305,7 @@
                         <div>
                             <h4 class="text-xl font-semibold mb-3 text-blue-500">📍 주요 지역 및 명소</h4>
                             <ul class="space-y-2 text-gray-700" id="map-locations">
-                                <!-- Locations will be dynamically inserted -->
+                                 Locations will be dynamically inserted 
                             </ul>
                         </div>
                         <div class="space-y-6">
@@ -248,7 +323,7 @@
                 </div>
             </div>
 
-            <!-- Numbers Section -->
+             Numbers Section 
             <div id="numbers" class="tab-content">
                 <div class="bg-white p-6 rounded-lg shadow-md space-y-8">
                     <h3 class="text-2xl font-bold text-blue-600 mb-4 border-b pb-2">🔢 일본어 숫자 (1~100 예시)</h3>
@@ -292,7 +367,7 @@
                 </div>
             </div>
 
-            <!-- Test Section -->
+             Test Section 
             <div id="test" class="tab-content">
                 <div id="test-selection" class="text-center">
                     <h3 class="text-2xl font-bold text-blue-600 mb-6">학습한 내용을 테스트해 보세요!</h3>
@@ -391,7 +466,15 @@
             { jp: 'じしょ', romaji: 'jisho', kr: '사전' }, { jp: 'しんぶん', romaji: 'shinbun', kr: '신문' },
             { jp: 'ちず', romaji: 'chizu', kr: '지도' }, { jp: 'だいがく', romaji: 'daigaku', kr: '대학교' },
             { jp: 'えんぴつ', romaji: 'enpitsu', kr: '연필' }, { jp: 'とけい', romaji: 'tokei', kr: '시계' },
-            { jp: 'げっせき', romaji: 'gesseki', kr: '결석' }, { jp: 'てがみ', romaji: 'tegami', kr: '편지' }
+            { jp: 'げっせき', romaji: 'gesseki', kr: '결석' }, { jp: 'てがみ', romaji: 'tegami', kr: '편지' },
+            // 새로 추가된 단어들
+            { jp: 'これ', romaji: 'kore', kr: '이것' }, { jp: 'それ', romaji: 'sore', kr: '그것' },
+            { jp: 'あれ', romaji: 'are', kr: '저것' }, { jp: 'どれ', romaji: 'dore', kr: '어느 것' },
+            { jp: 'そこ', romaji: 'soko', kr: '거기' }, { jp: 'あそこ', romaji: 'asoko', kr: '저기' },
+            { jp: 'どこ', romaji: 'doko', kr: '어디' }, { jp: 'がくせい', romaji: 'gakusei', kr: '학생' },
+            { jp: 'ただいま', romaji: 'tadaima', kr: '다녀왔습니다' }, { jp: 'おかえり', romaji: 'okaeri', kr: '어서 와' },
+            { jp: 'いってきます', romaji: 'ittekimasu', kr: '다녀오겠습니다' }, { jp: 'いってらっしゃい', romaji: 'itterasshai', kr: '다녀오세요' },
+            { jp: 'はじめまして', romaji: 'hajimemashite', kr: '처음 뵙겠습니다' }
         ];
 
         const phrases = [
@@ -403,6 +486,17 @@
             { jp: 'また あした', romaji: 'mata ashita', kr: '내일 봐요' },
             { jp: 'バイバイ', romaji: 'baibai', kr: '바이바이' },
             { jp: 'きょうは いい てんきですね', romaji: 'kyou wa ii tenki desu ne', kr: '오늘은 날씨가 좋네요' },
+        ];
+
+        // 새로 추가: 집에서 쓰는 인사말
+        const homePhrases = [
+            { jp: 'ただいま', romaji: 'tadaima', kr: '다녀왔습니다 (집에 돌아왔을 때)' },
+            { jp: 'おかえり', romaji: 'okaeri', kr: '어서 와 (돌아온 사람에게)' },
+            { jp: 'おかえりなさい', romaji: 'okaeri nasai', kr: '어서 오세요 (정중한 표현)' },
+            { jp: 'いってきます', romaji: 'ittekimasu', kr: '다녀오겠습니다 (나갈 때)' },
+            { jp: 'いってらっしゃい', romaji: 'itterasshai', kr: '다녀오세요 (나가는 사람에게)' },
+            { jp: 'はじめまして', romaji: 'hajimemashite', kr: '처음 뵙겠습니다' },
+            { jp: 'よろしくお願いします', romaji: 'yoroshiku onegaishimasu', kr: '잘 부탁드립니다' }
         ];
         
         const mapLocations = [
@@ -490,7 +584,11 @@
             { question: "일본의 소비세는 몇 %인가요?", options: ["5%", "8%", "10%", "12%"], answer: "10%" },
             { question: "일본에서 가장 높은 산은 무엇인가요?", options: ["한라산", "에베레스트", "후지산", "백두산"], answer: "후지산" },
             { question: "삿포로 눈 축제가 열리는 지역은 어디인가요?", options: ["혼슈", "규슈", "시코쿠", "홋카이도"], answer: "홋카이도" },
-            { question: "일본의 행정구역(도도부현)은 총 몇 개인가요?", options: ["42개", "45개", "47개", "50개"], answer: "47개" }
+            { question: "일본의 행정구역(도도부현)은 총 몇 개인가요?", options: ["42개", "45개", "47개", "50개"], answer: "47개" },
+            // 새로 추가된 질문들
+            { question: "집에 돌아왔을 때 하는 인사말은?", options: ["ただいま", "おかえり", "いってきます", "いってらっしゃい"], answer: "ただいま" },
+            { question: "화자에게 가까운 것을 가리키는 말은?", options: ["これ", "それ", "あれ", "どれ"], answer: "これ" },
+            { question: "청자가 있는 곳을 가리키는 말은?", options: ["ここ", "そこ", "あそこ", "どこ"], answer: "そこ" }
         ];
 
         // Populate Vocabulary
@@ -519,6 +617,21 @@
                 <p class="text-lg font-semibold text-right w-full sm:w-auto">${phrase.kr}</p>
             `;
             phrasesContainer.appendChild(item);
+        });
+
+        // Populate Home Phrases
+        const homePhrasesContainer = document.querySelector('#phrases-home');
+        homePhrases.forEach(phrase => {
+            const item = document.createElement('div');
+            item.className = 'bg-white p-5 rounded-lg shadow-md flex items-center justify-between flex-wrap';
+            item.innerHTML = `
+                <div class="mb-2 sm:mb-0">
+                    <p class="text-xl font-bold text-blue-500">${phrase.jp}</p>
+                    <p class="text-md text-gray-500">${phrase.romaji}</p>
+                </div>
+                <p class="text-lg font-semibold text-right w-full sm:w-auto">${phrase.kr}</p>
+            `;
+            homePhrasesContainer.appendChild(item);
         });
         
         // Populate Hiragana Chart
